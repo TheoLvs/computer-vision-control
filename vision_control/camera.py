@@ -14,6 +14,7 @@ https://github.com/theolvs
 import numpy as np
 import cv2
 from PIL import Image
+from tqdm import tqdm
 
 
 #=============================================================================================================================
@@ -42,14 +43,18 @@ def gaussian_smooth(img):
 
 
 class CameraImage(object):
-    def __init__(self,image = None,capture = False):
+    def __init__(self,image = None,file_path = None,capture = False,tag = None):
 
         if capture:
             image = self.capture()
 
+        if file_path is not None:
+            image = Image.open(file_path)
+
         self.img = image
         self.array = self.to_array()
         self.original_array = np.copy(self.array)
+        self.tag = tag
         
     def to_array(self):
         return np.array(self.img)
@@ -62,16 +67,72 @@ class CameraImage(object):
         return self.img._repr_png_()
 
 
-    def preprocess(self,canny_intensity = 50):
+    def preprocess(self,canny_intensity = 30):
 
         # Basic preprocessing
         img = to_black_and_white(self.original_array)
         img = detect_edges(img,canny_intensity,canny_intensity*2)
 
+        img = np.array(Image.fromarray(img).resize((320,240)))
+
         self.set_array(img)
 
 
     def capture(self):
-        pass
+        cap = cv2.VideoCapture(0)
+        _,img = cap.read()
+        return Image.fromarray(img)
+
+
+    def predict(self,model):
+        img = self.array
+        x = img.reshape(1,img.shape[0]*img.shape[1])
+        x = np.divide(x,255)
+        prediction = model.predict_classes(x)[0][0]
+        return prediction
+
+
+
+
+
+#=============================================================================================================================
+# CAMERA IMAGES
+#=============================================================================================================================
+
+
+class CameraImages(object):
+    def __init__(self,file_paths = None,camera_images = None):
+
+        if file_paths is not None:
+            self.images = [CameraImage(file_path = file_path) for file_path in file_paths]
+        else:
+            self.images = camera_images
+
+
+    def __getitem__(self,key):
+        return self.images[key]
+
+
+    def preprocess(self):
+        for image in tqdm(self.images,desc = "Preprocessing images"):
+            image.preprocess()
+
+
+    def build_X(self,flatten = True):
         
+        for i,image in enumerate(self.images):
+            img = image.array
+            if flatten: img = img.reshape(-1,img.shape[0]*img.shape[1])
+            if i == 0:
+                X = img
+            else:
+                X = np.vstack([X,img])
+
+        return X
+
+
+
+    def build_y(self):
+        y = np.array([image.tag for image in self.images]).reshape(-1,1)
+        return y
 
