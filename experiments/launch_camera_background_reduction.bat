@@ -1,0 +1,3 @@
+python camera_background_reduction.py
+
+pause
