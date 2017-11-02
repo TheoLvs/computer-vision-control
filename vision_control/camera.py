@@ -43,7 +43,7 @@ def gaussian_smooth(img):
 
 
 class CameraImage(object):
-    def __init__(self,image = None,file_path = None,capture = False,tag = None):
+    def __init__(self,image = None,file_path = None,capture = False,tag = None,check = True):
 
         if capture:
             image = self.capture()
@@ -51,10 +51,21 @@ class CameraImage(object):
         if file_path is not None:
             image = Image.open(file_path)
 
-        self.img = image
-        self.array = self.to_array()
-        self.original_array = np.copy(self.array)
-        self.tag = tag
+
+        if check:
+            try:
+                image.load()
+                self.ok = True
+            except IOError:
+                self.ok = False
+
+
+        if check == False or self.ok:
+            self.file_path = file_path
+            self.img = image
+            self.array = self.to_array()
+            self.original_array = np.copy(self.array)
+            self.tag = tag
         
     def to_array(self):
         return np.array(self.img)
@@ -71,7 +82,7 @@ class CameraImage(object):
 
         # Basic preprocessing
         img = to_black_and_white(self.original_array)
-        img = gaussian_smooth(img)
+        # img = gaussian_smooth(img)
         img = detect_edges(img,canny_intensity,canny_intensity*2)
         img = gaussian_smooth(img)
 
@@ -90,6 +101,7 @@ class CameraImage(object):
 
 
     def predict(self,model):
+        self.preprocess()
         img = self.array
         x = img.reshape(1,img.shape[0]*img.shape[1])
         x = np.divide(x,255)
@@ -127,7 +139,12 @@ class CameraImages(object):
         
         for i,image in enumerate(self.images):
             img = image.array
-            if flatten: img = img.reshape(-1,img.shape[0]*img.shape[1])
+            if flatten: 
+                img = img.reshape(-1,img.shape[0]*img.shape[1])
+            else:
+                img = np.expand_dims(img,axis = 0)
+                img = img.reshape((*img.shape,1))
+
             if i == 0:
                 X = img
             else:
