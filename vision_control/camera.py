@@ -73,9 +73,12 @@ class CameraImage(object):
         img = to_black_and_white(self.original_array)
         img = detect_edges(img,canny_intensity,canny_intensity*2)
 
+        # Resizing
         img = np.array(Image.fromarray(img).resize((320,240)))
 
+        # Setting the array
         self.set_array(img)
+        
 
 
     def capture(self):
@@ -88,7 +91,7 @@ class CameraImage(object):
         img = self.array
         x = img.reshape(1,img.shape[0]*img.shape[1])
         x = np.divide(x,255)
-        prediction = model.predict_classes(x)[0][0]
+        prediction = model.predict(x)[0][0]
         return prediction
 
 
