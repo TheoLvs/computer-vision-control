@@ -82,9 +82,9 @@ class CameraImage(object):
 
         # Basic preprocessing
         img = to_black_and_white(self.original_array)
-        img = gaussian_smooth(img)
-        img = detect_edges(img,canny_intensity,canny_intensity*2)
-        img = gaussian_smooth(img)
+        # img = gaussian_smooth(img)
+        # img = detect_edges(img,canny_intensity,canny_intensity*2)
+        # img = gaussian_smooth(img)
 
         # Resizing
         img = np.array(Image.fromarray(img).resize((320,240)))

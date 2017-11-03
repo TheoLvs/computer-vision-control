@@ -1,3 +1,0 @@
-python capture.py
-
-pause
