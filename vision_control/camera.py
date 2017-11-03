@@ -43,7 +43,7 @@ def gaussian_smooth(img):
 
 
 class CameraImage(object):
-    def __init__(self,image = None,file_path = None,capture = False,tag = None,check = True):
+    def __init__(self,image = None,file_path = None,capture = False,tag = None,check = True,preprocess = True,**kwargs):
 
         if capture:
             image = self.capture()
@@ -66,6 +66,9 @@ class CameraImage(object):
             self.array = self.to_array()
             self.original_array = np.copy(self.array)
             self.tag = tag
+
+            if preprocess:
+                self.preprocess(**kwargs)
         
     def to_array(self):
         return np.array(self.img)
@@ -78,16 +81,20 @@ class CameraImage(object):
         return self.img._repr_png_()
 
 
-    def preprocess(self,canny_intensity = 30):
+    def preprocess(self,full = False,canny_intensity = 30):
 
-        # Basic preprocessing
-        img = to_black_and_white(self.original_array)
-        # img = gaussian_smooth(img)
-        # img = detect_edges(img,canny_intensity,canny_intensity*2)
-        # img = gaussian_smooth(img)
+        img = self.original_array
+
+        if len(img.shape) == 3:
+            img = to_black_and_white(self.original_array)
+
+        if full:
+            img = gaussian_smooth(img)
+            img = detect_edges(img,canny_intensity,canny_intensity*2)
+            img = gaussian_smooth(img)
 
         # Resizing
-        img = np.array(Image.fromarray(img).resize((320,240)))
+        img = np.array(Image.fromarray(img).resize((160,120)))
 
 
         # Setting the array
@@ -142,7 +149,7 @@ class CameraImages(object):
 
     def build_X(self,flatten = True):
         
-        for i,image in enumerate(self.images):
+        for i,image in enumerate(tqdm(self.images)):
             img = image.array
             if flatten: 
                 img = img.reshape(-1,img.shape[0]*img.shape[1])
