@@ -8,7 +8,7 @@ import tensorflow as tf
 
 print(">> LOADING TENSORFLOW MODEL")
 from ekimetrics.computer_vision import object_detection as od
-model_path = "C:/git/models/object_detection/coco/frozen_inference_graph.pb"
+model_path = "C:/git/models/object_detection/coco/frozen_inference_graph_ssd_mobilenet.pb"
 categories_path = "C:/git/models/object_detection/coco/categories.json"
 detection_graph = od.load_frozen_tf_model(model_path)
 categories = od.load_categories_dictionary(categories_path)

@@ -10,8 +10,13 @@ from keras.models import model_from_json
 
 
 print(">> Loading DL model")
-model = model_from_json(open("C:/git/computer-vision-control/models/model_mlp.json","r").read())
-model.load_weights("C:/git/computer-vision-control/models/model_mlp.h5")
+
+
+is_cnn = True
+model_type = "cnn" if is_cnn else "mlp"
+
+model = model_from_json(open("C:/git/computer-vision-control/models/model_{}.json".format(model_type),"r").read())
+model.load_weights("C:/git/computer-vision-control/models/model_{}.h5".format(model_type))
 print("ok")
 
 
@@ -28,7 +33,7 @@ while(True):
     image = CameraImage(image = img)
 
     # Prediction
-    proba = float(image.predict(model))
+    proba = float(image.predict(model,flatten = not is_cnn))
 
     # Hand detection
     if proba > 0.5:

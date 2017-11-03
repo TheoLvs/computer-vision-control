@@ -108,8 +108,8 @@ class CameraImage(object):
         return Image.fromarray(img)
 
 
-    def predict(self,model,flatten = True):
-        self.preprocess()
+    def predict(self,model,full = False,flatten = True):
+        self.preprocess(full = full)
         img = self.array
 
         if flatten:
@@ -117,6 +117,7 @@ class CameraImage(object):
         else:
             x = img.reshape(1,*img.shape,1)
         x = np.divide(x,255)
+
         prediction = model.predict(x)[0][0]
         return prediction
 
