@@ -17,4 +17,5 @@ But also to compare the complexity between a Machine Learning implementation and
 
 ### References for the Machine Learning implementation
 - [Deep Learning for Integrated Hand Detection and Pose Estimation](http://vision.unipv.it/CV/materiale2016-17/4th%20Choice/0257.pdf)
+- [Deep Learning Based Hand Detectionin Cluttered Environment Using Skin Segmentation](http://openaccess.thecvf.com/content_ICCV_2017_workshops/papers/w11/Roy_Deep_Learning_Based_ICCV_2017_paper.pdf)
 
