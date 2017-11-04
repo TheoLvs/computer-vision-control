@@ -8,8 +8,13 @@ But also to compare the complexity between a Machine Learning implementation and
 ### Possible actions to implement
 - Control Spotify
 
-
-### References for OpenCV implementation
+***
+## References
+### References for the hand-crafted implementation
 - [Hand tracking recognition](http://sa-cybernetics.github.io/blog/2013/08/12/hand-tracking-and-recognition-with-opencv/)
 - [Finger tracking tutorial](https://picoledelimao.github.io/blog/2015/11/15/fingertip-detection-on-opencv/)
+- [Detecting Hands and Recognizing Activities in Complex Egocentric Interactions](http://vision.soic.indiana.edu/papers/egohands2015iccv.pdf)
+
+### References for the Machine Learning implementation
+- [Deep Learning for Integrated Hand Detection and Pose Estimation](http://vision.unipv.it/CV/materiale2016-17/4th%20Choice/0257.pdf)
 
