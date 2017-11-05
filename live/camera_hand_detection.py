@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 from PIL import Image
+import time
 
 import sys
 sys.path.append("../")
@@ -20,6 +21,9 @@ model.load_weights("C:/git/computer-vision-control/models/model_{}.h5".format(mo
 print("ok")
 
 
+showing_hand = False
+
+
 cap = cv2.VideoCapture(0)
 
 while(True):
@@ -33,11 +37,21 @@ while(True):
     image = CameraImage(image = img)
 
     # Prediction
-    proba = float(image.predict(model,flatten = not is_cnn))
+    proba = float(image.predict(model,flatten = not is_cnn,full = True))
 
-    # Hand detection
+
     if proba > 0.5:
-        print("HAND !")
+        if not showing_hand:
+            s = time.time()
+            showing_hand = True
+    else:
+        if showing_hand:
+            e = time.time()
+            print("You showed your hand for {}s".format(e-s))
+            showing_hand = False
+
+
+
 
     # Preprocessing
     edges = to_black_and_white(frame)

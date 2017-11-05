@@ -3,12 +3,18 @@ import cv2
 from PIL import Image
 
 cap = cv2.VideoCapture(0)
+background = True
+
+if background:
+    fgbg = cv2.createBackgroundSubtractorMOG2()
 
 i = 1
 
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
+    if background:
+        frame = fgbg.apply(frame)
 
     Image.fromarray(frame).save("image_capture_{}.png".format(i))
 
