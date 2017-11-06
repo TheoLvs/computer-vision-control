@@ -5,6 +5,12 @@ The idea is to control your computer by **detecting specific movements and behav
 This is a personal project whose goal is to fully implement and deploy a Deep Learning algorithm in a live setting.<br>
 But also to compare the complexity between a Machine Learning implementation and a hand crafted one using classical image processing methods such as those from OpenCV. 
 
+##### Goals : 
+- Build a project from scratch to production
+- Real understanding of the hyperparameters
+- Reproduce teachable machines
+- Make a model that runs on CPU and a small laptop and deployable to work at 60FPS with a webcam
+
 ### Possible actions to implement
 - Control Spotify
 
