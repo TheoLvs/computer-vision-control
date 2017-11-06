@@ -37,7 +37,7 @@ while(True):
     image = CameraImage(image = img)
 
     # Prediction
-    proba = float(image.predict(model,flatten = not is_cnn,full = True))
+    proba = float(image.predict(model,flatten = not is_cnn,full = False))
 
 
     if proba > 0.5:
