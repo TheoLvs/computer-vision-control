@@ -1,0 +1,3 @@
+python camera_hand_detection_opencv.py
+
+pause
