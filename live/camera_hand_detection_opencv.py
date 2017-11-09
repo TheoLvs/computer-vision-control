@@ -2,8 +2,10 @@ import numpy as np
 import cv2
 from PIL import Image
 import time
+from sklearn.cluster import MeanShift
 
 background_reduction = False
+ms = MeanShift(bandwidth=20)
 
 fgbg = cv2.createBackgroundSubtractorMOG2()
 
@@ -22,7 +24,7 @@ def preprocess_and_show(img,hvs = (107,175,70),background_reduction = background
         x = cv2.cvtColor(x,cv2.COLOR_BGR2HSV)
 
         # Filter out some color ranges
-        x = cv2.inRange(x,(107, 0,0),(255,255,255))
+        x = cv2.inRange(x,(107, 70,0),(255,255,255))
 
         x_preprocessed = None
 
@@ -43,9 +45,13 @@ def preprocess_and_show(img,hvs = (107,175,70),background_reduction = background
         max_contour = np.argmax([y.shape[0] for y in contours])
 
         # Draw contours
-        x = cv2.drawContours(x_original,contours,max_contour,(0,255,0),3)
+        cv2.drawContours(x_original,contours,max_contour,(0,255,0),2)
 
-    return Image.fromarray(x_original),x_preprocessed
+        # Hull convex detection
+        hull = [cv2.convexHull(contours[max_contour])]
+        cv2.drawContours(x_original,hull,0,(0,0,255),2)
+
+    return Image.fromarray(x_original),x_preprocessed,hull[0]
 
 
 cap = cv2.VideoCapture(0)
@@ -56,8 +62,12 @@ while(True):
 
 
     # Preprocessing
-    img,x_preprocessed = preprocess_and_show(frame)
+    img,x_preprocessed,hull = preprocess_and_show(frame)
     img = np.array(img)
+
+    # Find number of fingers
+    n_angles = len(np.bincount(ms.fit_predict(hull.reshape(-1,2))))
+    print(n_angles)
 
     # Display the resulting frame
     cv2.imshow('frame',img)
