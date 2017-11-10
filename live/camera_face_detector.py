@@ -7,6 +7,7 @@ import time
 face_cascade = cv2.CascadeClassifier('C:/git/models/opencv_models/haarcascades/haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('C:/git/models/opencv_models/haarcascades/haarcascade_eye.xml')
 smile_cascade = cv2.CascadeClassifier('C:/git/models/opencv_models/haarcascades/haarcascade_smile.xml')
+hand_cascade = cv2.CascadeClassifier('C:/git/models/opencv_models/haarcascades/haarcascade1/aGest.xml')
 
 
 cap = cv2.VideoCapture(0)
@@ -44,7 +45,9 @@ while(True):
                 smiling = False
 
 
-
+    hands = hand_cascade.detectMultiScale(gray)
+    for (x,y,w,h) in hands:
+        cv2.rectangle(img,(x,y),(x+w,y+h),(128,255,0),2)
 
     # Display the resulting frame
     cv2.imshow('frame',img)
