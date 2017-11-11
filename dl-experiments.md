@@ -13,4 +13,4 @@
 - CNN architecture trained from scratch on the edges version reached easily 90% and 86% on the training and validation sets. It worked a little bit more in production, but still unexpectedly overfits to a detail in the background
 - CNN architecture using a pretrained base model on Image Net and then added a fully connected neural network on top of it. I didn't go too far with this option, even if it could have been the best, because calculating the embedding with the pre trained base was too slow (300ms for a single sample), thus obviously not usable at 60FPS 
 - CNN architecture on the black and white version only, works really well on the 6000 images, (90% accuracy for the training and validation set). But unfortunately it worked less in a live production setting than the canny edges detection. Too much sensitive to the background
-- New attempt by creating a dataset with background reduction algorithm
+- New attempt by creating a dataset with background reduction algorithm, without data augmentation. CNN and vanilla neural networks give good accuracy for the training and validation set (90%). But don't work well in a live setting
