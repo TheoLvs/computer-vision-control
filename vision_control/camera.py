@@ -16,22 +16,7 @@ import cv2
 from PIL import Image
 from tqdm import tqdm
 
-
-#=============================================================================================================================
-# HELPER FUNCTIONS
-#=============================================================================================================================
-
-
-def to_black_and_white(img):
-    return cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-
-
-def detect_edges(img,threshold1 = 200,threshold2 = 300):
-    return cv2.Canny(img, threshold1 = threshold1, threshold2=threshold2)
-
-
-def gaussian_smooth(img):
-    return cv2.GaussianBlur(img,(5,5),0)
+from vision_control.utils import *
 
 
 
