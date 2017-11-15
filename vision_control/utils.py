@@ -46,8 +46,15 @@ def gaussian_smooth(img):
 def reload_keras_model(h5_path,json_path):
     from keras.models import model_from_json
     model = model_from_json(open(json_path,"r").read())
-    model.load_weights(h5_path.format(model_type))
+    model.load_weights(h5_path)
     return model
+
+
+def save_keras_model(model,h5_path,json_path):
+    model.save(h5_path)
+    with open(json_path, "w") as json_file:
+        json_file.write(model.to_json())
+
 
 
 
@@ -83,8 +90,10 @@ def crop_face(img,cascade_classifier = None):
 
 
 
-def draw_face_contours(img,cascade_classifier = None):
+def draw_face_contours(img,cascade_classifier = None,header = None,color = None):
     faces = detect_face(img,cascade_classifier = cascade_classifier)
+
+    color = map_colors(color)
 
     if len(faces) > 1:
         print("Warning : multiple faces")
@@ -93,9 +102,27 @@ def draw_face_contours(img,cascade_classifier = None):
 
 
     for (x,y,w,h) in faces:
-        cv2.rectangle(new_img,(x,y),(x+w,y+h),(255,0,0),2)
+        cv2.rectangle(new_img,(x,y),(x+w,y+h),color,2)
+
+        if header is not None:
+            cv2.putText(new_img,header, (x,y-10), cv2.FONT_HERSHEY_SIMPLEX, 1, color)
+
 
     return new_img
+
+
+
+def map_colors(color = None):
+    if color is None or color == "red":
+        color = (255,0,0)
+    elif color == "green":
+        color = (0,255,0)
+    elif color == "blue":
+        color = (0,0,255)
+    else:
+        pass
+
+    return color
 
 
 
