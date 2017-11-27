@@ -28,6 +28,8 @@ But also to compare the complexity between a Machine Learning implementation and
 - [Deep Learning Based Hand Detectionin Cluttered Environment Using Skin Segmentation](http://openaccess.thecvf.com/content_ICCV_2017_workshops/papers/w11/Roy_Deep_Learning_Based_ICCV_2017_paper.pdf)
 - [Real Time Full Hand tracking](https://www.youtube.com/watch?v=OLL_F4LV0YM) - and the [github repo](https://github.com/timctho/convolutional-pose-machines-tensorflow)
 - [Nice tutorial on stackoverflow](https://stackoverflow.com/questions/44491350/deep-learning-for-hand-detection)
+- [Paper on real time pose estimation](https://arxiv.org/abs/1611.08050) - [Repo](https://github.com/ZheC/Realtime_Multi-Person_Pose_Estimation) and [Chainer implementation](https://github.com/DeNA/Chainer_Realtime_Multi-Person_Pose_Estimation)
+
 
 ### Datasets 
 - [Database for hand gesture recognition](http://sun.aei.polsl.pl/~mkawulok/gestures/)
