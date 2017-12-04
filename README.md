@@ -29,6 +29,7 @@ But also to compare the complexity between a Machine Learning implementation and
 - [Real Time Full Hand tracking](https://www.youtube.com/watch?v=OLL_F4LV0YM) - and the [github repo](https://github.com/timctho/convolutional-pose-machines-tensorflow)
 - [Nice tutorial on stackoverflow](https://stackoverflow.com/questions/44491350/deep-learning-for-hand-detection)
 - [Paper on real time pose estimation](https://arxiv.org/abs/1611.08050) - [Repo](https://github.com/ZheC/Realtime_Multi-Person_Pose_Estimation) and [Chainer implementation](https://github.com/DeNA/Chainer_Realtime_Multi-Person_Pose_Estimation)
+- [Tutorial for Tensorflow implementation](https://towardsdatascience.com/how-to-build-a-real-time-hand-detector-using-neural-networks-ssd-on-tensorflow-d6bac0e4b2ce)
 
 
 ### Datasets 
