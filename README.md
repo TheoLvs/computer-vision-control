@@ -38,4 +38,4 @@ But also to compare the complexity between a Machine Learning implementation and
 - [VIVA hand detection benchmark](http://cvrr.ucsd.edu/vivachallenge/index.php/hands/hand-detection/)
 - [EgoHands](http://vision.soic.indiana.edu/projects/egohands/)
 - [Mujah dataset](https://www.mutah.edu.jo/biometrix/hand-images-databases.html)
-
+- [Google dataset](https://sites.google.com/view/11khands)
