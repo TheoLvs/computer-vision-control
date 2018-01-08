@@ -50,8 +50,10 @@ But also to compare the complexity between a Machine Learning implementation and
 
 ### References
 - [The excellent library face_recognition](https://github.com/ageitgey/face_recognition)
+- [Face classification using Keras](https://github.com/oarriaga/face_classification)
 
 #### Datasets
 - CelebA
+- [Labelled faces in the wild](http://vis-www.cs.umass.edu/lfw/)
 
 
