@@ -13,17 +13,19 @@ But also to compare the complexity between a Machine Learning implementation and
 
 ### Possible actions to implement
 - Control Spotify
+- Control houses and clicks on computer
 
 ***
-## References
-### References for the hand-crafted implementation
+## Hand tracking references
+![](http://www.willpowell.co.uk/blog/wp-content/uploads/2012/11/CEOVision-hand-tracking.png)
+#### References for the hand-crafted implementation
 - [Hand tracking recognition](http://sa-cybernetics.github.io/blog/2013/08/12/hand-tracking-and-recognition-with-opencv/)
 - [Finger tracking tutorial](https://picoledelimao.github.io/blog/2015/11/15/fingertip-detection-on-opencv/)
 - [Detecting Hands and Recognizing Activities in Complex Egocentric Interactions](http://vision.soic.indiana.edu/papers/egohands2015iccv.pdf)
 - [Handmap blog](https://handmap.github.io/dlib-classifier-for-object-detection/)
 - [Scikit image documentation](http://scikit-image.org/docs/dev/auto_examples/)
 
-### References for the Machine Learning implementation
+#### References for the Machine Learning implementation
 - [Deep Learning for Integrated Hand Detection and Pose Estimation](http://vision.unipv.it/CV/materiale2016-17/4th%20Choice/0257.pdf)
 - [Deep Learning Based Hand Detectionin Cluttered Environment Using Skin Segmentation](http://openaccess.thecvf.com/content_ICCV_2017_workshops/papers/w11/Roy_Deep_Learning_Based_ICCV_2017_paper.pdf)
 - [Real Time Full Hand tracking](https://www.youtube.com/watch?v=OLL_F4LV0YM) - and the [github repo](https://github.com/timctho/convolutional-pose-machines-tensorflow)
@@ -31,11 +33,25 @@ But also to compare the complexity between a Machine Learning implementation and
 - [Paper on real time pose estimation](https://arxiv.org/abs/1611.08050) - [Repo](https://github.com/ZheC/Realtime_Multi-Person_Pose_Estimation) and [Chainer implementation](https://github.com/DeNA/Chainer_Realtime_Multi-Person_Pose_Estimation)
 - [Tutorial for Tensorflow implementation](https://towardsdatascience.com/how-to-build-a-real-time-hand-detector-using-neural-networks-ssd-on-tensorflow-d6bac0e4b2ce)
 
-
-### Datasets 
+#### Datasets 
 - [Database for hand gesture recognition](http://sun.aei.polsl.pl/~mkawulok/gestures/)
 - [Hand Dataset](http://www.robots.ox.ac.uk/~vgg/data/hands/)
 - [VIVA hand detection benchmark](http://cvrr.ucsd.edu/vivachallenge/index.php/hands/hand-detection/)
 - [EgoHands](http://vision.soic.indiana.edu/projects/egohands/)
 - [Mujah dataset](https://www.mutah.edu.jo/biometrix/hand-images-databases.html)
 - [Google dataset](https://sites.google.com/view/11khands)
+
+
+
+***
+## Face Recognition references
+
+![](https://www.vigilantsolutions.com/wp-content/uploads/facialrecog.jpg)
+
+### References
+- [The excellent library face_recognition](https://github.com/ageitgey/face_recognition)
+
+#### Datasets
+- CelebA
+
+
