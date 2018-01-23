@@ -28,7 +28,7 @@ from vision_control.utils import *
 
 
 class CameraImage(object):
-    def __init__(self,image = None,file_path = None,capture = False,tag = None,check = True,preprocess = True,**kwargs):
+    def __init__(self,image = None,file_path = None,capture = False,tag = None,check = True,preprocess = False,**kwargs):
 
         if capture:
             image = self.capture()
@@ -67,6 +67,7 @@ class CameraImage(object):
 
 
     def preprocess(self,full = False,canny_intensity = 30):
+        print("hello")
 
         img = self.original_array
 
