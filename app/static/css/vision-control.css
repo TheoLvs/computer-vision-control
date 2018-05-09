@@ -43,14 +43,18 @@ body{
   background-color: #cde8ed;
   color:black;
   padding-left: 30px;
+  margin-bottom:30px;
 }
 
 .camerafeed{
   text-align:center;
-  padding-top:60px;
 }
 
 #output{
 }
 
 
+.content-actions{
+  padding-left:15px;
+  font-size:12px;
+}

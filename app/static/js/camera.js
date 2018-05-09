@@ -66,8 +66,16 @@ function detectPoseInRealTime(video, net) {
     score = pose["score"];
     keypoints = pose["keypoints"];
 
+    nose = keypoints[0].position
+    hand = keypoints[9].position
+
+
+
     const scale = canvasSize / video.width;
 
+    $("#output-score").html(score);
+    $("#noseposition").html(`x : ${nose.x} , y : ${nose.y}`);
+    $("#handposition").html(`x : ${hand.x} , y : ${hand.y}`);
 
 
     draw();
