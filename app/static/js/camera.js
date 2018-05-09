@@ -1,4 +1,14 @@
 
+// --------------------------------------------------------------------------------------------------------------------------------
+// CAMERA PREPARATION
+// --------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+//  https://github.com/tensorflow/tfjs-models/tree/master/posenet
+
+
 async function setupCamera() {
   const video = document.getElementById('video');
   video.width = maxVideoSize;
@@ -38,7 +48,7 @@ async function loadVideo() {
 
 const maxVideoSize = 400;
 const canvasSize = 400;
-const imageScaleFactor = 0.20;
+const imageScaleFactor = 0.50;
 const flipHorizontal = false;
 const outputStride = 32;
 
@@ -61,32 +71,21 @@ function detectPoseInRealTime(video, net) {
     var minPoseConfidence= 0.1;
     var minPartConfidence= 0.2;
 
+    // Predict with posenet detector
     const pose = await net.estimateSinglePose(video, imageScaleFactor, flipHorizontal, outputStride);
 
-    score = pose["score"];
-    keypoints = pose["keypoints"];
+    // Trigger all the possible actions from a pose
+    trigger_actions(pose);
 
-    nose = keypoints[0].position
-    hand = keypoints[9].position
-
-
-
+    // Update Canvas
     const scale = canvasSize / video.width;
-
-    $("#output-score").html(score);
-    $("#noseposition").html(`x : ${nose.x} , y : ${nose.y}`);
-    $("#handposition").html(`x : ${hand.x} , y : ${hand.y}`);
-
-
     draw();
-
     if (score >= minPoseConfidence) {
       drawKeypoints(keypoints, minPartConfidence, ctx, scale);
       drawSkeleton(keypoints, minPartConfidence, ctx, scale);
     }
 
-
-
+    // Loop the capture
     requestAnimationFrame(poseDetectionFrame);
 
   }
@@ -98,11 +97,98 @@ function detectPoseInRealTime(video, net) {
 
 
 
+// --------------------------------------------------------------------------------------------------------------------------------
+// ACTTIONS
+// --------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
+function trigger_actions(pose){
 
+  update_scores(pose);
+  spotify_control(pose);
+
+}
+
+
+function update_scores(pose){
+
+    score = pose["score"];
+    keypoints = pose["keypoints"];
+
+    nose = keypoints[0].score
+    lefthand = keypoints[9].score
+    righthand = keypoints[10].score
+
+
+    $("#output-score").html(score);
+    $("#noseposition").html(nose);
+    $("#lefthandposition").html(lefthand);
+    $("#righthandposition").html(righthand);
+
+
+}
+
+
+function spotify_control(pose){
+
+    keypoints = pose["keypoints"];
+
+    nose = keypoints[0].score
+    lefthand = keypoints[9].score
+    righthand = keypoints[10].score
+
+    if (lefthand > 0.6) {
+      play_spotify();
+    }
+
+    if (righthand > 0.6){
+      pause_spotify();
+    }
+
+
+}
+
+
+
+async function play_spotify(){
+
+  spotify_token = $("#spotify-token-input").val();
+  console.log("Resuming spotify");
+
+  $.ajax({
+      type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+      dataType: 'json', // Set datatype - affects Accept header
+      url: "https://api.spotify.com/v1/me/player/play", // A valid URL
+      headers: {"Authorization":"Bearer " + spotify_token}, // X-HTTP-Method-Override set to PUT.
+  });
+
+}
+
+
+
+async function pause_spotify(){
+
+  spotify_token = $("#spotify-token-input").val();
+  console.log("Pausing spotify");
+  
+  $.ajax({
+      type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+      dataType: 'json', // Set datatype - affects Accept header
+      url: "https://api.spotify.com/v1/me/player/pause", // A valid URL
+      headers: {"Authorization":"Bearer " + spotify_token}, // X-HTTP-Method-Override set to PUT.
+  });
+
+}
+
+
+
+
+// --------------------------------------------------------------------------------------------------------------------------------
+// DRAW ON CANVAS
+// Credits to Google original code
+// --------------------------------------------------------------------------------------------------------------------------------
 
 
 

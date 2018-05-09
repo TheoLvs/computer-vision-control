@@ -36,7 +36,7 @@ body{
   padding:15px;
   background-color: white;
   min-height:calc(100% - 80px);
-  box-shadow: 2px 2px 5px 0px gray;
+  border-radius:10px;
 }
 
 .paneltitle{
@@ -44,6 +44,7 @@ body{
   color:black;
   padding-left: 30px;
   margin-bottom:30px;
+  border-radius:10px;
 }
 
 .camerafeed{
