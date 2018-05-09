@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <!-- https://www.shanelynn.ie/asynchronous-updates-to-a-webpage-with-flask-and-socket-io/ -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/static/css/vision-control.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+
+    <title>VisionControl</title>
+  </head>
+  <body>
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class = "top-bar">
+          <h6>Vision Control</h6>
+        </div>
+      </div>
+
+      <div class = "row mainrow">
+        <div class = "col-6 panelwrapper">
+          <div class = "panel leftpanel">
+            <div class="paneltitle">
+              Camera feed
+            </div>
+          </div>
+        </div>
+
+        <div class = "col-6 panelwrapper">
+          <div class = "panel leftpanel">
+            <div class="paneltitle">
+              Actions
+            </div>
+          </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
+
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <!-- Load Posenet -->
+    <script src="https://unpkg.com/@tensorflow-models/posenet">
+    </script>
+    <script type="text/javascript">
+      posenet.load().then(function(net) {
+        // posenet model loaded
+      });
+    </script>
+
+
+  </body>
+</html>
