@@ -44,3 +44,12 @@ body{
   color:black;
   padding-left: 30px;
 }
+
+
+.camerafeed{
+  padding:30px;
+  text-align:center;
+}
+#video{
+  height:400px;
+}
