@@ -31,7 +31,8 @@
               Camera feed
             </div>
             <div class="camerafeed">
-              <video id="video" playsinline autoplay="true"></video>
+              <video id="video" playsinline autoplay="true" style="display:none"></video>
+              <canvas id="output" />
             </div>
           </div>
         </div>
@@ -40,6 +41,10 @@
           <div class = "panel leftpanel">
             <div class="paneltitle">
               Actions
+            </div>
+
+            <div class="content-actions">
+              Nose position : <span id="noseposition"></span>
             </div>
           </div>
         </div>
@@ -63,9 +68,29 @@
     <script src="https://unpkg.com/@tensorflow-models/posenet">
     </script>
     <script type="text/javascript">
-      posenet.load().then(function(net) {
-        // posenet model loaded
-      });
+
+      var net;
+
+      async function bindPage() {
+        // Load the PoseNet model weights for version 1.01
+        net = await posenet.load();
+
+        let video;
+
+        try {
+          video = await loadVideo();
+        } catch(e) {
+          console.error(e);
+          return;
+        }
+
+        detectPoseInRealTime(video, net);
+      }
+
+
+
+      bindPage();
+
     </script>
 
 

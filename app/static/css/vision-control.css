@@ -45,11 +45,12 @@ body{
   padding-left: 30px;
 }
 
-
 .camerafeed{
-  padding:30px;
   text-align:center;
+  padding-top:60px;
 }
-#video{
-  height:400px;
+
+#output{
 }
+
+
