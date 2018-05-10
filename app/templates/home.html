@@ -20,19 +20,76 @@
     <div class="container-fluid">
       <div class="row">
         <div class = "top-bar">
-          <h6>Vision Control</h6>
+          <h6><i class="fa fa-fw fa-circle-o-notch" style="margin-right:15px"></i>VISION CONTROL</h6>
         </div>
       </div>
 
       <div class = "row mainrow">
-        <div class = "col-6 panelwrapper">
+        <div class = "col-2"></div>
+        <div class = "col-4 panelwrapper">
           <div class = "panel leftpanel">
             <div class="paneltitle">
+              <i class="fa fa-video-camera" style = "margin-right:15px"></i>
               Camera feed
             </div>
             <div class="camerafeed">
               <video id="video" playsinline autoplay="true" style="display:none"></video>
-              <canvas id="output" />
+              <canvas id="output" style="height:400px;width:400px;background-color:#eff3fa"/>
+            </div>
+
+
+            <div class="results-algorithm">
+
+              <div class="content-actions">
+                Score : <span id="output-score"></span>
+              </div>
+
+              <div class="content-actions">
+                Nose score : <span id="noseposition"></span>
+              </div>
+
+              <div class="content-actions">
+                Left Hand score : <span id="lefthandposition"></span>
+              </div>
+
+
+              <div class="content-actions">
+                Right Hand score : <span id="righthandposition"></span>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class = "col-3 panelwrapper">
+          <div class = "panel leftpanel">
+            <div class="paneltitle">
+              <i class="fa fa-spotify" style = "margin-right:15px"></i>
+              Spotify control
+            </div>
+
+          <div class="actions-container">
+
+            <div class="action-block" id="spotify-play-button">
+              <i class="fa fa-play icon-action"></i>
+              Play
+            </div>
+
+            <div class="action-block" id="spotify-pause-button">
+              <i class="fa fa-pause icon-action"></i>
+              Pause
+            </div>
+
+            <div class="action-block">
+              <i class="fa fa-step-forward icon-action"></i>
+              Next track
+            </div>
+
+            <div class="action-block">
+              <i class="fa fa-step-backward icon-action"></i>
+              Previous track
             </div>
 
             <div class="form-input">
@@ -41,31 +98,9 @@
                 <input type="text" class="form-control" id="spotify-token-input" placeholder="Enter your Spotify token">
               </div>
             </div>
+
           </div>
-        </div>
 
-        <div class = "col-6 panelwrapper">
-          <div class = "panel leftpanel">
-            <div class="paneltitle">
-              Actions
-            </div>
-
-            <div class="content-actions">
-              Score : <span id="output-score"></span>
-            </div>
-
-            <div class="content-actions">
-              Nose score : <span id="noseposition"></span>
-            </div>
-
-            <div class="content-actions">
-              Left Hand score : <span id="lefthandposition"></span>
-            </div>
-
-
-            <div class="content-actions">
-              Right Hand score : <span id="righthandposition"></span>
-            </div>
 
           </div>
         </div>

@@ -8,7 +8,7 @@ body{
 }
 
 .top-bar{
-  background-color:#088da5;
+  background-color:#004d7b;
   height:50px;
   padding-top:15px;
   padding-right:20px;
@@ -16,12 +16,12 @@ body{
   width:100%;
   vertical-align: middle;
   color:white;
-  box-shadow: 5px -10px 25px gray;
+  box-shadow: 5px -10px 45px gray;
 }
 
 
 .mainrow{
-  background-color: #e6f3f6;
+  background-color: #eff3fa;
   height:100vh;
 }
 
@@ -40,10 +40,10 @@ body{
 }
 
 .paneltitle{
-  background-color: #cde8ed;
-  color:black;
+  background-color: #004d7b; 
+  color:white;
   padding-left: 30px;
-  margin-bottom:30px;
+  margin-bottom:20px;
   border-radius:10px;
 }
 
@@ -52,6 +52,7 @@ body{
 }
 
 #output{
+  color:#00a5ff
 }
 
 
@@ -59,3 +60,37 @@ body{
   padding-left:15px;
   font-size:12px;
 }
+
+
+.results-algorithm{
+  margin-top:15px;
+  background-color: #eff3fa;
+  padding:15px;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.action-block{
+  width:150px;
+  margin:0 auto;
+  text-align:center;
+  background-color:#00a5ff;
+  color:white;
+  margin-bottom:20px;
+  padding:5px;
+  border-radius: 20px;
+  font-size:14px;-
+}
+
+.icon-action{
+  float:left;
+  margin-left:10px;
+  padding:5px;
+}
+
+
+
+.action-active{
+  background-color:#004d7b;
+}
+

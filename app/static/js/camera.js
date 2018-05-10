@@ -154,6 +154,9 @@ function spotify_control(pose){
 
 async function play_spotify(){
 
+
+  $("#spotify-play-button").addClass("action-active");
+
   spotify_token = $("#spotify-token-input").val();
   console.log("Resuming spotify");
 
@@ -162,7 +165,15 @@ async function play_spotify(){
       dataType: 'json', // Set datatype - affects Accept header
       url: "https://api.spotify.com/v1/me/player/play", // A valid URL
       headers: {"Authorization":"Bearer " + spotify_token}, // X-HTTP-Method-Override set to PUT.
+      success: function(response){
+        $("#spotify-play-button").removeClass("action-active");
+      },
+      error:function(response){
+        $("#spotify-play-button").removeClass("action-active");
+      }
   });
+
+
 
 }
 
@@ -170,6 +181,7 @@ async function play_spotify(){
 
 async function pause_spotify(){
 
+  $("#spotify-pause-button").addClass("action-active");
   spotify_token = $("#spotify-token-input").val();
   console.log("Pausing spotify");
   
@@ -178,6 +190,12 @@ async function pause_spotify(){
       dataType: 'json', // Set datatype - affects Accept header
       url: "https://api.spotify.com/v1/me/player/pause", // A valid URL
       headers: {"Authorization":"Bearer " + spotify_token}, // X-HTTP-Method-Override set to PUT.
+      success:function(response){
+        $("#spotify-pause-button").removeClass("action-active");
+      },
+      error:function(response){
+        $("#spotify-pause-button").removeClass("action-active");
+      }
   });
 
 }
